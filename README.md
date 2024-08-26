@@ -1,6 +1,8 @@
-# Nuxt 3 Minimal Starter
+# AniNuxt 
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+## API
+
+This application uses the API from [api.consumet.org](https://github.com/consumet/api.consumet.org); it's recommended that you host it on your own server.
 
 ## Setup
 
