@@ -11,9 +11,7 @@ Create a `.env` file in the root of your project and add the following variables
 ```env
 # Application settings
 API_BASE=http://<YOUR_CONSUMET_URL>
-
-
-This application uses the API from [api.consumet.org](https://github.com/consumet/api.consumet.org); it's recommended that you host it on your own server.
+```
 
 ## Setup
 
