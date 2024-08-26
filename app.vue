@@ -8,11 +8,13 @@
 </template>
 
 <script setup lang="ts">
-    // useHead({
-    //     htmlAttrs: [{
-    //         'data-theme': 'black'
-    //     }]
-    // })
+const { $locally } = useNuxtApp()
+
+await useHead({
+    htmlAttrs: [{
+        'data-theme': $locally.getItem('theme') || ''
+    }]
+})
 </script>
 
 <style>
