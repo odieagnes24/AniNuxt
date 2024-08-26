@@ -1,16 +1,16 @@
 <template>
     <dialog id="my_modal_2" class="modal shadow-2xl overflow-hidden">
-        <div class="modal-box w-11/12 max-w-7xl overflow-hidden">
-            <div class="flex items-center overflow-hidden">
+        <div class="modal-box w-11/12 max-w-7xl overflow-hidden p-0">
+            <div class="flex items-center overflow-hidden px-2 py-1 border-b-2">
                 <Icon name="ph:magnifying-glass-bold" mode="svg" size="1.8rem" />
                 <input
                     v-model="searchValue"
                     type="text"
-                    class="flex-grow rounded ms-2 px-4 py-2"
+                    class="flex-grow rounded mx-1 px-4 py-2 bg-inherit focus:outline-none focus:border-none"
                     placeholder="Search"
                 />
                 <form method="dialog">
-                    <button ref="modalCloseButton" class="btn btn-sm btn-circle btn-ghost ms-2">✕</button>
+                    <button ref="modalCloseButton" class="btn btn-sm btn-circle btn-ghost ">✕</button>
                 </form>
             </div>
             <div ref="scrollableDiv" class="p-5 mt-2 pb-48 h-svh overflow-auto">
