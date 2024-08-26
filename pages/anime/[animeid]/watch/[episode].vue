@@ -41,7 +41,19 @@ const { data: anime, status, error } = await useAsyncData(`anime:${animeId}`, as
 
 if(anime.value['servers'].length > 0)
 {
-    serverUrl.value = anime.value['servers'][0].url
+    const priorityServer =  anime.value['servers'].findIndex(server => server.name === "Streamwish")
+    const priorityServer2 =  anime.value['servers'].findIndex(server => server.name === "Vidhide")
+
+    if(priorityServer != -1) {
+        serverIndex.value = priorityServer
+    }
+    else {
+        if(priorityServer2 != -1) { 
+            serverIndex.value = priorityServer2
+        }
+    }
+
+    serverUrl.value = anime.value['servers'][serverIndex.value].url
 }
 
 function changeServer(index) {
