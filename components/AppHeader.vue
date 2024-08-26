@@ -7,6 +7,9 @@
                 </NuxtLink>
             </div>
             <div class="flex justify-center align-middle">
+                <a href="https://github.com/odieagnes24/AniNuxt" target="_blank" class="btn btn-ghost btn-circle">
+                    <Icon name="akar-icons:github-fill" mode="svg" size="1.8rem" />
+                </a>
                 <div class="dropdown dropdown-end">
                     <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
                         <Icon name="mdi:theme" mode="svg" size="1.8rem" />
