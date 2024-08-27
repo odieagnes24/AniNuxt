@@ -8,11 +8,12 @@
 </template>
 
 <script setup lang="ts">
-const { $locally } = useNuxtApp()
+
+const currentTheme = useCookie('theme')
 
 await useHead({
     htmlAttrs: [{
-        'data-theme': $locally.getItem('theme') || ''
+        'data-theme': currentTheme || ''
     }]
 })
 </script>

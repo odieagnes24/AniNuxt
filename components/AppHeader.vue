@@ -36,12 +36,12 @@
 </template>
 
 <script setup lang="ts">
-const { $locally } = useNuxtApp()
+const currentTheme = useCookie('theme')
 const appConfig  = useAppConfig()
 
 function setTheme(theme) {
 
-    $locally.setItem('theme', theme)
+    currentTheme.value = theme
 
     useHead({
         htmlAttrs: [{
