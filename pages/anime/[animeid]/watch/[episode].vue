@@ -2,13 +2,41 @@
     <div class="px-10">
         <Watch :url="serverUrl" />
       
-        <div class="bg-base-200 rounded-b-lg p-4 pb-0">
-            <template v-for="(server, index) in anime.servers">
-                <button @click="changeServer(index)" :class="{ 'btn-success': index == serverIndex }" class="btn btn-active btn-secondary me-3 px-6 mb-4">{{ server.name }}</button>
-            </template>
+        <div class="bg-base-200 rounded-b-lg p-4 pb-4 sm:pb-0">
+            <div class="hidden md:block">
+                <template v-for="(server, index) in anime.servers">
+                    <button @click="changeServer(index)" :class="{ 'btn-success': index == serverIndex }" class="btn btn-active btn-secondary me-3 px-6 mb-4">{{ server.name }}</button>
+                </template>
+            </div>
+  
+            <div class="inline-block md:hidden me-2">
+                <label class="form-control w-full max-w-xs">
+                    <div class="label">
+                        <span class="label-text">Server</span>
+                    </div>
+                    <select class="select select-bordered w-full max-w-xs" v-model="serverIndex">
+                        <template v-for="(server, index) in anime.servers">
+                            <option :value="index" :selected="index == serverIndex">{{ server.name }}</option>
+                        </template>
+                    </select>
+                </label>
+            </div>
+
+            <div class="inline-block md:hidden">
+                <label class="form-control w-full max-w-xs">
+                    <div class="label">
+                        <span class="label-text">Episode</span>
+                    </div>
+                    <select class="select select-bordered w-full max-w-xs" v-model="episode">
+                        <template v-for="ep in anime.info.totalEpisodes">
+                            <option :value="ep" :selected="episode == ep">{{ ep }}</option>
+                        </template>
+                    </select>
+                </label>
+            </div>
         </div>
      
-        <div class="bg-base-200 rounded p-4 pb-0 mt-5">
+        <div class="bg-base-200 rounded p-4 pb-0 mt-5 hidden md:block">
             <template v-for="ep in anime.info.totalEpisodes">
                 <button @click="episode = ep" :class="{ 'btn-success': episode == ep }" class="btn btn-active btn-secondary me-3 px-6 mb-4">{{ ep }}</button>
             </template>
@@ -63,6 +91,10 @@ function changeServer(index) {
 
 watch(episode, async (newEpisode, oldEpisode) => {
     await navigateTo(`/anime/${animeId}/watch/${episode.value}`)
+})
+
+watch(serverIndex, async (newServer, oldServer) => {
+    changeServer(newServer)
 })
 
 useHead({
