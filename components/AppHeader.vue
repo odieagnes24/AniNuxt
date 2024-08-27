@@ -16,10 +16,10 @@
                     </div>
                     <ul
                         tabindex="0"
-                        class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+                        class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow block h-64 overflow-auto">
                         <template v-for="theme in appConfig.themes">
-                            <li>
-                                <a @click="setTheme(theme)">
+                            <li class="p-1">
+                                <a :class="{ 'active' : currentTheme == theme }" @click="setTheme(theme)">
                                     {{ theme }}
                                 </a>
                             </li>
