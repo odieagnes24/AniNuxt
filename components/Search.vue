@@ -93,7 +93,7 @@ watch(searchValue, useDebounce(() => {
 }, 200))
 
 function closeModal(anime) {
-    console.log(searchHistory.value)
+    searchHistory.value = $search.storeNewHistory(anime.id, anime)
     modalCloseButton.value!.click()
 }
 
