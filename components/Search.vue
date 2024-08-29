@@ -18,11 +18,22 @@
                     {{ error.statusCode }} | {{ error.message }}
                 </p>
 
-                <p v-if="animes.hasNextPage" class="mb-5">Page {{ pageNumber }}</p>
+                <p v-if="animes.hasNextPage" class="mb-5 text-lg font-semibold">Page {{ pageNumber }}</p>
+                <p v-if="searchValue.length === 0" class="mb-5 text-lg font-semibold">Recent Searches</p>
+
+                <ClientOnly fallbackTag="span">
+                    <div v-if="searchValue.length === 0" class="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-4">
+                        <div v-for="anime in searchHistory">
+                            <NuxtLink @click="closeModal()" :to="`/anime/${anime.value.id}/watch/1`">
+                                <AnimeCard :anime="anime.value"/>
+                            </NuxtLink>
+                        </div>
+                    </div>
+                </ClientOnly>
 
                 <div v-if="status === 'success'" class="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-4">
                     <div v-for="anime in animes.results">
-                        <NuxtLink @click="closeModal" :to="`/anime/${anime.id}/watch/1`">
+                        <NuxtLink @click="closeModal(anime)" :to="`/anime/${anime.id}/watch/1`">
                             <AnimeCard :anime="anime"/>
                         </NuxtLink>
                     </div>
@@ -55,6 +66,8 @@
 
 <script setup lang="ts">
 
+const { $search } = useNuxtApp() 
+
 const config = useRuntimeConfig();
 const searchValue = ref('')
 
@@ -72,12 +85,15 @@ const { status, data: animes, error } = await useAsyncData(`search:${searchIncre
     watch: [searchValueListener, pageNumber]
 })
 
+const searchHistory = ref($search.getHistory())
+
 watch(searchValue, useDebounce(() => {
     searchValueListener.value = searchValue.value
     pageNumber.value = 1
 }, 200))
 
-function closeModal() {
+function closeModal(anime) {
+    console.log(searchHistory.value)
     modalCloseButton.value!.click()
 }
 

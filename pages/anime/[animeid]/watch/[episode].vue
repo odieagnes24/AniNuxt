@@ -98,7 +98,7 @@ watch(serverIndex, async (newServer, oldServer) => {
 })
 
 useHead({
-    title: anime.value.info.title + ' | Episode ' + episode
+    title: anime.value.info.title + ' | Episode ' + episode.value
 })
 
 </script>
