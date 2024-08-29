@@ -36,7 +36,7 @@
 </template>
 
 <script setup lang="ts">
-const currentTheme = useCookie('theme')
+const currentTheme = useCookie('theme', { maxAge: 10368000 })
 const appConfig  = useAppConfig()
 
 function setTheme(theme) {
