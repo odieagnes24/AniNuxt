@@ -19,13 +19,21 @@
                 </p>
 
                 <p v-if="animes.hasNextPage" class="mb-5 text-lg font-semibold">Page {{ pageNumber }}</p>
-                <p v-if="searchValue.length === 0" class="mb-5 text-lg font-semibold">Recent Searches</p>
 
+                <div v-if="searchValue.length === 0" class="mb-5 flex justify-between items-center">
+                    <p class="text-lg font-semibold">Recent Searches</p>
+
+                    <button v-if="searchHistory.length > 0" @click="clearHistory()"  class="btn btn-outline btn-danger btn-xs ms-2">
+                        <Icon name="material-symbols:delete" mode="svg" size="1rem" />
+                        Clear History
+                    </button>
+                </div>
+               
                 <ClientOnly fallbackTag="span">
                     <div v-if="searchValue.length === 0" class="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-4">
                         <div v-for="anime in searchHistory">
-                            <NuxtLink @click="closeModal()" :to="`/anime/${anime.value.id}/watch/1`">
-                                <AnimeCard :anime="anime.value"/>
+                            <NuxtLink @click="closeModal()" :to="`/anime/${anime.id}/watch/1`">
+                                <AnimeCard :anime="anime"/>
                             </NuxtLink>
                         </div>
                     </div>
@@ -40,18 +48,9 @@
                 </div>
 
                 <div v-else class="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-4">
-                    <div class="skeleton w-180px h-80 rounded"> </div>
-                    <div class="skeleton w-180px h-80 rounded"> </div>
-                    <div class="skeleton w-180px h-80 rounded"> </div>
-                    <div class="skeleton w-180px h-80 rounded"> </div>
-                    <div class="skeleton w-180px h-80 rounded"> </div>
-                    <div class="skeleton w-180px h-80 rounded"> </div>
-                    <div class="skeleton w-180px h-80 rounded"> </div>
-                    <div class="skeleton w-180px h-80 rounded"> </div>
-                    <div class="skeleton w-180px h-80 rounded"> </div>
-                    <div class="skeleton w-180px h-80 rounded"> </div>
-                    <div class="skeleton w-180px h-80 rounded"> </div>
-                    <div class="skeleton w-180px h-80 rounded"> </div>
+                    <template v-for="skeleton in 12">
+                        <div class="skeleton w-180px h-80 rounded"> </div>
+                    </template>
                 </div>
 
                 <div v-if="status === 'success'" class="w-full flex justify-end mt-10">
@@ -93,8 +92,15 @@ watch(searchValue, useDebounce(() => {
 }, 200))
 
 function closeModal(anime) {
-    searchHistory.value = $search.storeNewHistory(anime.id, anime)
+    if(anime) {
+        searchHistory.value = $search.storeNewHistory(anime)
+    }
+
     modalCloseButton.value!.click()
+}
+
+function clearHistory() {
+    searchHistory.value = $search.clearSearchHistory()
 }
 
 watch(status, (newVal, oldVal) => {

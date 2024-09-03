@@ -12,18 +12,9 @@
     </div>
 
     <div v-else class="grid xl:grid-cols-6 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-1 gap-4">
-        <div class="skeleton w-180px h-80 rounded"> </div>
-        <div class="skeleton w-180px h-80 rounded"> </div>
-        <div class="skeleton w-180px h-80 rounded"> </div>
-        <div class="skeleton w-180px h-80 rounded"> </div>
-        <div class="skeleton w-180px h-80 rounded"> </div>
-        <div class="skeleton w-180px h-80 rounded"> </div>
-        <div class="skeleton w-180px h-80 rounded"> </div>
-        <div class="skeleton w-180px h-80 rounded"> </div>
-        <div class="skeleton w-180px h-80 rounded"> </div>
-        <div class="skeleton w-180px h-80 rounded"> </div>
-        <div class="skeleton w-180px h-80 rounded"> </div>
-        <div class="skeleton w-180px h-80 rounded"> </div>
+        <template v-for="skeleton in 12">
+            <div class="skeleton w-180px h-80 rounded"> </div>
+        </template>
     </div>
 </template>
 
