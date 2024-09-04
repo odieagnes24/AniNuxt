@@ -5,7 +5,13 @@
             <a role="tab" @click="tab = 'history'" :class="{ 'tab-active': tab == 'history' }" class="tab">History</a>
         </div>
 
-        <TopAiring />
+        <TopAiring v-show="tab == 'top-airing'"/>
+
+        <div v-show="tab == 'history'">
+            <ClientOnly fallbackTag="span">
+                <WatchHistory />
+            </ClientOnly>
+        </div>
     </div>
 </template>
 

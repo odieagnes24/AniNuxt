@@ -72,6 +72,9 @@
 </template>
 
 <script setup lang="ts">
+
+const { $watchHistory } = useNuxtApp() 
+
 const route = useRoute()
 const config = useRuntimeConfig();
 
@@ -117,6 +120,13 @@ watch(status, function (newVal, oldVal) {
 
         useHead({
             title: anime.value.info.title + ' | Episode ' + episode.value
+        })
+
+        $watchHistory.storeNewHistory({
+            id: anime.value.info.id,
+            title: anime.value.info.title,
+            image: anime.value.info.image,
+            ep: episode.value,
         })
     }
 })
