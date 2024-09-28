@@ -10,7 +10,9 @@ Create a `.env` file in the root of your project and add the following variables
 
 ```env
 # Application settings
-API_BASE=http://<YOUR_CONSUMET_URL>
+API_BASE=/api/proxy
+API_DOMAIN=https://<YOUR_CONSUMET_URL>
+API_KEY=<YOUR_CONSUMET_API_KEY> 
 ```
 
 ## Setup
