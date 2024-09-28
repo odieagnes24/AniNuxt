@@ -7,6 +7,9 @@ export default defineNuxtConfig({
     // Options
   },
   runtimeConfig: {
+    apiDomain: process.env.API_DOMAIN,
+    apiKey: process.env.API_KEY,
+
     public: {
       apiBase: process.env.API_BASE
     }
