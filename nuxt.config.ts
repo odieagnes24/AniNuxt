@@ -6,6 +6,9 @@ export default defineNuxtConfig({
   tailwindcss: {
     // Options
   },
+  plugins: [
+    { src: '~/plugins/shaka-player.client.js', mode: 'client' },
+  ],
   runtimeConfig: {
     apiDomain: process.env.API_DOMAIN,
     apiKey: process.env.API_KEY,
