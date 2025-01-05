@@ -11,7 +11,9 @@
   },
   "dependencies": {
     "@nuxt/icon": "^1.4.10",
+    "axios": "^1.7.9",
     "nuxt": "^3.12.4",
+    "shaka-player": "^4.12.5",
     "vue": "latest",
     "vue3-carousel-nuxt": "^1.1.2"
   },
