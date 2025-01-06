@@ -4,6 +4,21 @@
         <div v-if="status === 'success'" class="md:col-span-8 col-span-12">
           <WatchHls v-if="serverUrl" :streamUrl="serverUrl" />
           
+          <div class="bg-base-200 rounded-b-lg p-4 pb-4 sm:pb-0">
+              <div class="inline-block md:hidden">
+                  <label class="form-control w-full max-w-xs">
+                      <div class="label">
+                          <span class="label-text">Episode</span>
+                      </div>
+                      <select class="select select-bordered w-full max-w-xs" v-model="episode">
+                          <template v-for="ep in anime.info.totalEpisodes">
+                              <option :value="ep" :selected="episode == ep">{{ ep }}</option>
+                          </template>
+                      </select>
+                  </label>
+              </div>
+          </div>
+
           <div class="bg-base-200 rounded p-4 pb-0 mt-5 hidden md:block">
             <template v-if="anime.info.totalEpisodes <= 25" v-for="ep in anime.info.totalEpisodes">
               <button @click="episode = ep" :class="{ 'btn-success': episode == ep }" class="btn btn-active btn-secondary me-3 px-6 mb-4">{{ ep }}</button>
